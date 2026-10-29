@@ -1,5 +1,5 @@
 // Catálogo de productos.
-// Para agregar un perfume: copia un bloque, cambia los datos y coloca la foto en /public/products.
+// Para agregar un perfume: copia un bloque, cambia los datos y coloca la foto en public/products.
 // IMPORTANTE: los precios son de ejemplo. Revísalos antes de publicar la web.
 
 export type Gender = "Hombre" | "Mujer" | "Unisex";
@@ -32,7 +32,7 @@ export const products: Product[] = [
     concentration: "Eau de Parfum",
     ml: 120,
     price: 2450,
-    image: "/products/amber-oud-gold.webp",
+    image: "products/amber-oud-gold.webp",
     tagline: "Dorado, dulce y magnético.",
     description:
       "Un clásico moderno de la perfumería árabe. Abre fresco y frutal, y se asienta en un fondo ambarado y cálido que dura todo el día.",
@@ -49,7 +49,7 @@ export const products: Product[] = [
     concentration: "Eau de Parfum",
     ml: 100,
     price: 2150,
-    image: "/products/hawas-ice.webp",
+    image: "products/hawas-ice.webp",
     tagline: "Frescura helada para el calor.",
     description:
       "La versión más fresca de Hawas. Cítrica, limpia y helada: ideal para el clima de Honduras y para usar a diario.",
@@ -66,7 +66,7 @@ export const products: Product[] = [
     concentration: "Eau de Parfum",
     ml: 100,
     price: 2150,
-    image: "/products/hawas-tropical.webp",
+    image: "products/hawas-tropical.webp",
     tagline: "Verano en un frasco.",
     description:
       "Jugoso y vibrante, con frutas tropicales sobre un fondo fresco y amaderado. Perfecto para el día y los fines de semana.",
@@ -82,7 +82,7 @@ export const products: Product[] = [
     concentration: "Extrait de Parfum",
     ml: 100,
     price: 2300,
-    image: "/products/9pm-night-out.webp",
+    image: "products/9pm-night-out.webp",
     tagline: "Hecho para la noche.",
     description:
       "Intenso, dulce y especiado. Una concentración extrait con gran duración y estela, pensada para salidas y ocasiones especiales.",
@@ -98,7 +98,7 @@ export const products: Product[] = [
     concentration: "Eau de Parfum",
     ml: 100,
     price: 2250,
-    image: "/products/bharara-king.webp",
+    image: "products/bharara-king.webp",
     tagline: "Presencia de rey.",
     description:
       "Elegante y seguro. Una salida cítrica brillante que evoluciona hacia un fondo amaderado y ambarado, con excelente proyección.",

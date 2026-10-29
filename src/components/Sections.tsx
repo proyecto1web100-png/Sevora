@@ -32,7 +32,7 @@ export function Why() {
       />
       <div className="bento">
         <Reveal className="bento__item bento__item--hero">
-          <img src="/brand/sevora-logo.webp" alt="" className="bento__logo" />
+          <img src="brand/sevora-logo.webp" alt="" className="bento__logo" />
           <h3>{first.title}</h3>
           <p>{first.text}</p>
         </Reveal>
@@ -120,7 +120,7 @@ export function Footer() {
   return (
     <footer className="footer container">
       <div className="footer__brand">
-        <img src="/brand/sevora-logo.webp" alt="Sévora Essence" width={72} height={72} />
+        <img src="brand/sevora-logo.webp" alt="Sévora Essence" width={72} height={72} />
         <p className="muted">Perfumería árabe original en {site.country}.</p>
       </div>
       <div className="footer__cols">

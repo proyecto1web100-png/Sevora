@@ -25,7 +25,7 @@ export function Nav() {
       transition={{ duration: 0.8, ease: easeOut, delay: 0.2 }}
     >
       <a href="#inicio" className="nav__brand" aria-label="Sévora Essence, inicio">
-        <img src="/brand/sevora-logo.webp" alt="" width={36} height={36} />
+        <img src="brand/sevora-logo.webp" alt="" width={36} height={36} />
         <span>SÉVORA</span>
       </a>
       <nav className="nav__links" aria-label="Principal">

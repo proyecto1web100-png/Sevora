@@ -40,3 +40,13 @@ Es un sitio estático. Se puede hospedar gratis en **Vercel** o **Netlify** cone
 - Carpeta de salida: `dist`
 
 Luego se conecta el dominio (por ejemplo `sevora.hn` o `sevoraessence.com`).
+
+### GitHub Pages
+
+El workflow `.github/workflows/deploy.yml` publica la web en GitHub Pages en cada push a `main`
+(o a mano desde la pestaña **Actions → Publicar en GitHub Pages → Run workflow**).
+
+Para activarlo una sola vez: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+La web queda en `https://proyecto1web100-png.github.io/Sevora/`.
+
+> GitHub Pages en repositorios privados requiere un plan de pago (GitHub Pro). Con el plan gratuito, el repositorio debe ser público.
