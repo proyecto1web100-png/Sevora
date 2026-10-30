@@ -72,6 +72,39 @@ function Ripples({ delay }: { delay: number }) {
   );
 }
 
+// Cuando la onda exterior llega al aro, este se ensancha, brilla y un destello lo recorre.
+const PULSE_AT = FALL + ripples[2].delay + 0.55;
+
+function RingPulse() {
+  return (
+    <g>
+      <motion.circle
+        cx={C}
+        cy={C}
+        fill="none"
+        stroke="url(#ring)"
+        initial={false}
+        animate={{ r: [RING, RING + 7, RING - 3, RING + 1.5, RING], strokeWidth: [1, 2.4, 1.2, 1] }}
+        transition={{ duration: 1.6, delay: PULSE_AT, ease: easeOut }}
+      />
+      <motion.circle
+        cx={C}
+        cy={C}
+        r={RING}
+        fill="none"
+        stroke="#FFF4E2"
+        strokeWidth="2"
+        strokeLinecap="round"
+        pathLength={1}
+        strokeDasharray="0.14 0.86"
+        initial={{ strokeDashoffset: 0.25, opacity: 0 }}
+        animate={{ strokeDashoffset: -0.75, opacity: [0, 1, 1, 0] }}
+        transition={{ duration: 1.8, delay: PULSE_AT, ease: [0.45, 0, 0.25, 1], opacity: { duration: 1.8, delay: PULSE_AT, times: [0, 0.15, 0.7, 1] } }}
+      />
+    </g>
+  );
+}
+
 export function HeroRipple({ scale }: { scale: MotionValue<number> }) {
   const ref = useRef<SVGSVGElement>(null);
   const inView = useInView(ref);
@@ -106,17 +139,21 @@ export function HeroRipple({ scale }: { scale: MotionValue<number> }) {
             </radialGradient>
           </defs>
 
-          {/* aro permanente: nace con la primera onda */}
-          <motion.circle
-            cx={C}
-            cy={C}
-            fill="none"
-            stroke="url(#ring)"
-            strokeWidth="1"
-            initial={reduced ? false : { r: 24, opacity: 0 }}
-            animate={{ r: RING, opacity: 1 }}
-            transition={{ duration: 2.4, delay: ringDelay, ease: easeOut }}
-          />
+          {/* aro permanente: nace con la primera onda y vibra cuando lo alcanzan las siguientes */}
+          {cycle === 0 || reduced ? (
+            <motion.circle
+              cx={C}
+              cy={C}
+              fill="none"
+              stroke="url(#ring)"
+              strokeWidth="1"
+              initial={reduced ? false : { r: 24, opacity: 0 }}
+              animate={{ r: RING, opacity: 1 }}
+              transition={{ duration: 2.4, delay: ringDelay, ease: easeOut }}
+            />
+          ) : (
+            <RingPulse key={cycle} />
+          )}
           {!reduced && <Ripples key={cycle} delay={delay} />}
         </svg>
       </motion.div>
