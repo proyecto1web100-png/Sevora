@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 // Dunas doradas en la franja baja de la portada: líneas onduladas que se mueven
 // despacio, con un sol dorado que sale detrás al cargar. El cursor las desplaza un poco.
 
-export function Dunes() {
+export function HeroDunes() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const reduced = useReducedMotion();
 
@@ -45,11 +45,13 @@ export function Dunes() {
       const ease = 1 - Math.pow(1 - rise, 3);
       const sunR = Math.min(w, h * 2) * 0.16;
       const sunY = h * 0.92 - ease * h * 0.5;
-      const glow = ctx.createRadialGradient(w / 2, sunY, 0, w / 2, sunY, sunR * 2.6);
+      const glow = ctx.createRadialGradient(w / 2, sunY, 0, w / 2, sunY, sunR * 2.2);
       glow.addColorStop(0, `rgba(226,194,159,${0.22 * ease})`);
       glow.addColorStop(1, "rgba(226,194,159,0)");
       ctx.fillStyle = glow;
-      ctx.fillRect(0, 0, w, h);
+      ctx.beginPath();
+      ctx.arc(w / 2, sunY, sunR * 2.2, 0, Math.PI * 2);
+      ctx.fill();
       ctx.strokeStyle = `rgba(246,227,200,${0.8 * ease})`;
       ctx.lineWidth = 1.2;
       ctx.beginPath();

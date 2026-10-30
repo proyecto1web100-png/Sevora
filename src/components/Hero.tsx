@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { whatsappLink } from "../lib/format";
 import { easeOut } from "../lib/motion";
-import { heroVariants, type HeroVariant } from "./hero-art/variants";
+import { HeroDunes } from "./HeroDunes";
 import { ArrowIcon, WhatsAppIcon } from "./ui";
 
 const lines = [
@@ -10,8 +10,7 @@ const lines = [
   { words: ["se", "queda."], gold: true },
 ];
 
-export function Hero({ variant = heroVariants[0] }: { variant?: HeroVariant }) {
-  const { Slot, Frame, Backdrop } = variant;
+export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [0, 120]);
@@ -20,13 +19,11 @@ export function Hero({ variant = heroVariants[0] }: { variant?: HeroVariant }) {
   let wordIndex = 0;
 
   return (
-    <section id="inicio" className={`hero ${variant.className ?? ""}`} ref={ref}>
+    <section id="inicio" className="hero" ref={ref}>
       <div className="hero__glow" aria-hidden />
-      {Backdrop && <Backdrop />}
+      <HeroDunes />
 
       <motion.div className="hero__content" style={{ y, opacity }}>
-        {Frame && <Frame />}
-        {Slot && <Slot />}
         <motion.p
           className="eyebrow"
           initial={{ opacity: 0, y: 8 }}
@@ -86,15 +83,6 @@ export function Hero({ variant = heroVariants[0] }: { variant?: HeroVariant }) {
         </motion.div>
       </motion.div>
 
-      <motion.div
-        className="hero__hint"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.8 }}
-        aria-hidden
-      >
-        <span />
-      </motion.div>
     </section>
   );
 }
