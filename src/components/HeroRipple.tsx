@@ -1,9 +1,9 @@
-import { motion, useInView, useReducedMotion, type MotionValue } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { easeOut } from "../lib/motion";
 
-// Una gota dorada cae sobre el título y abre ondas concéntricas detrás de él;
-// la primera ronda deja el aro del logo. Mientras la portada está a la vista, cae una gota nueva cada pocos segundos.
+// Emblema sobre el título: una gota dorada cae al centro del aro y abre ondas
+// concéntricas; la primera ronda dibuja el aro del logo. Mientras la portada está a la vista, cae una gota nueva cada pocos segundos.
 
 const C = 200; // centro del viewBox
 const RING = 196; // radio del aro final
@@ -16,7 +16,7 @@ const fall = [0.55, 0, 0.9, 0.55] as const; // acelera como la gravedad
 const ripples = [
   { to: 110, width: 2.2, delay: 0 },
   { to: 165, width: 1.6, delay: 0.26 },
-  { to: 230, width: 1.1, delay: 0.52 },
+  { to: 206, width: 1.1, delay: 0.52 },
 ];
 
 function Drop({ delay }: { delay: number }) {
@@ -84,7 +84,7 @@ function RingPulse() {
         fill="none"
         stroke="url(#ring)"
         initial={false}
-        animate={{ r: [RING, RING + 7, RING - 3, RING + 1.5, RING], strokeWidth: [1, 2.4, 1.2, 1] }}
+        animate={{ r: [RING, RING + 7, RING - 3, RING + 1.5, RING], strokeWidth: [1.4, 3, 1.6, 1.4] }}
         transition={{ duration: 1.6, delay: PULSE_AT, ease: easeOut }}
       />
       <motion.circle
@@ -93,7 +93,7 @@ function RingPulse() {
         r={RING}
         fill="none"
         stroke="#FFF4E2"
-        strokeWidth="2"
+        strokeWidth="3"
         strokeLinecap="round"
         pathLength={1}
         strokeDasharray="0.14 0.86"
@@ -105,7 +105,7 @@ function RingPulse() {
   );
 }
 
-export function HeroRipple({ scale }: { scale: MotionValue<number> }) {
+export function HeroRipple() {
   const ref = useRef<SVGSVGElement>(null);
   const inView = useInView(ref);
   const reduced = useReducedMotion();
@@ -124,55 +124,43 @@ export function HeroRipple({ scale }: { scale: MotionValue<number> }) {
   const delay = cycle === 0 ? FIRST_DELAY : 0;
 
   return (
-    <>
-      <motion.div className="hero__ring" style={{ scale }} aria-hidden>
-        <svg viewBox="0 0 400 400" ref={ref}>
-          <defs>
-            <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#F6E3C8" />
-              <stop offset="50%" stopColor="#C9A27E" />
-              <stop offset="100%" stopColor="#7A5C42" />
-            </linearGradient>
-            <radialGradient id="splash">
-              <stop offset="0%" stopColor="#F6E3C8" stopOpacity="0.55" />
-              <stop offset="100%" stopColor="#E2C29F" stopOpacity="0" />
-            </radialGradient>
-          </defs>
+    <div className="hero__emblem" aria-hidden>
+      <svg viewBox="0 0 400 400" ref={ref}>
+        <defs>
+          <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#F6E3C8" />
+            <stop offset="50%" stopColor="#C9A27E" />
+            <stop offset="100%" stopColor="#A47E5C" />
+          </linearGradient>
+          <linearGradient id="drop" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#FBEBD3" />
+            <stop offset="55%" stopColor="#E2C29F" />
+            <stop offset="100%" stopColor="#9C7653" />
+          </linearGradient>
+          <radialGradient id="splash">
+            <stop offset="0%" stopColor="#F6E3C8" stopOpacity="0.55" />
+            <stop offset="100%" stopColor="#E2C29F" stopOpacity="0" />
+          </radialGradient>
+        </defs>
 
-          {/* aro permanente: nace con la primera onda y vibra cuando lo alcanzan las siguientes */}
-          {cycle === 0 || reduced ? (
-            <motion.circle
-              cx={C}
-              cy={C}
-              fill="none"
-              stroke="url(#ring)"
-              strokeWidth="1"
-              initial={reduced ? false : { r: 24, opacity: 0 }}
-              animate={{ r: RING, opacity: 1 }}
-              transition={{ duration: 2.4, delay: ringDelay, ease: easeOut }}
-            />
-          ) : (
-            <RingPulse key={cycle} />
-          )}
-          {!reduced && <Ripples key={cycle} delay={delay} />}
-        </svg>
-      </motion.div>
-
-      {/* la gota va delante del título */}
-      {!reduced && (
-        <motion.div className="hero__ring hero__ring--front" style={{ scale }} aria-hidden>
-          <svg viewBox="0 0 400 400">
-            <defs>
-              <linearGradient id="drop" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#FBEBD3" />
-                <stop offset="55%" stopColor="#E2C29F" />
-                <stop offset="100%" stopColor="#9C7653" />
-              </linearGradient>
-            </defs>
-            <Drop key={cycle} delay={delay} />
-          </svg>
-        </motion.div>
-      )}
-    </>
+        {/* aro permanente: nace con la primera onda y vibra cuando lo alcanzan las siguientes */}
+        {cycle === 0 || reduced ? (
+          <motion.circle
+            cx={C}
+            cy={C}
+            fill="none"
+            stroke="url(#ring)"
+            strokeWidth="1.4"
+            initial={reduced ? false : { r: 24, opacity: 0 }}
+            animate={{ r: RING, opacity: 1 }}
+            transition={{ duration: 2.4, delay: ringDelay, ease: easeOut }}
+          />
+        ) : (
+          <RingPulse key={cycle} />
+        )}
+        {!reduced && <Ripples key={`r${cycle}`} delay={delay} />}
+        {!reduced && <Drop key={`d${cycle}`} delay={delay} />}
+      </svg>
+    </div>
   );
 }

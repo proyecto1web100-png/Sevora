@@ -15,16 +15,15 @@ export function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [0, 120]);
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const ringScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
 
   let wordIndex = 0;
 
   return (
     <section id="inicio" className="hero" ref={ref}>
-      <HeroRipple scale={ringScale} />
       <div className="hero__glow" aria-hidden />
 
       <motion.div className="hero__content" style={{ y, opacity }}>
+        <HeroRipple />
         <motion.p
           className="eyebrow"
           initial={{ opacity: 0, y: 8 }}
