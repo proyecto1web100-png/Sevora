@@ -1,11 +1,25 @@
-// Datos generales de la tienda. Edita aquí el número, textos de envío y pagos.
+// Datos generales de la tienda. Edita aquí el número, redes, horario y políticas.
+// Los textos marcados como "confirmar" son una propuesta: ajústalos a cómo trabajan ustedes.
 
 export const site = {
   name: "Sévora Perfumerie",
+  // Dirección pública de la web (con "/" al final). Se usa para los enlaces de cada perfume.
+  url: "https://proyecto1web100-png.github.io/Sevora/",
   // Número de WhatsApp en formato internacional, sin "+" ni espacios (504 = Honduras).
   whatsapp: "50497946129",
   whatsappDisplay: "+504 9794-6129",
   country: "Honduras",
+  // Horario de atención (confirmar).
+  hours: "Lunes a sábado, 9:00 a. m. – 7:00 p. m.",
+  // Enlace CSV de la hoja de Google Sheets publicada en la web (ver README). Vacío = usa src/data/products.ts.
+  catalogCsvUrl: "",
+};
+
+// Redes sociales: pega el enlace completo. Las que queden vacías no se muestran.
+export const social = {
+  instagram: "",
+  tiktok: "",
+  facebook: "",
 };
 
 export const trustPoints = [
@@ -13,6 +27,50 @@ export const trustPoints = [
   { title: "Envíos a toda Honduras", text: "Entregas en Tegucigalpa, San Pedro Sula y todo el país." },
   { title: "Pagas como prefieras", text: "Tarjeta, transferencia o contra entrega." },
   { title: "Asesoría personal", text: "Te ayudamos a encontrar tu aroma por WhatsApp." },
+];
+
+// Políticas de compra (confirmar). Cada una se abre completa al tocarla.
+export const policies = [
+  {
+    id: "originalidad",
+    title: "Garantía de originalidad",
+    summary: "Solo producto original, sellado y en su caja de fábrica.",
+    body: [
+      "Todos nuestros perfumes son originales y llegan sellados, con su caja y su código de lote de fábrica.",
+      "Compramos a distribuidores autorizados y guardamos las facturas de compra de cada lote.",
+      "Si tienes cualquier duda sobre la autenticidad de un perfume que compraste con nosotros, escríbenos y lo revisamos contigo.",
+    ],
+  },
+  {
+    id: "envios",
+    title: "Envíos",
+    summary: "A toda Honduras. Te confirmamos costo y tiempo antes de pagar.",
+    body: [
+      "Enviamos a todo el país por medio de empresas de paquetería. En Tegucigalpa y San Pedro Sula también podemos coordinar entrega con motorista.",
+      "El costo depende de tu ciudad y te lo confirmamos por WhatsApp antes de que pagues.",
+      "El tiempo de entrega suele ser de 1 a 3 días hábiles después de confirmado el pago. Te compartimos el número de guía para que sigas tu paquete.",
+    ],
+  },
+  {
+    id: "cambios",
+    title: "Cambios y devoluciones",
+    summary: "Cambios dentro de 7 días si el perfume está sellado.",
+    body: [
+      "Puedes solicitar un cambio dentro de los 7 días siguientes a recibir tu pedido, siempre que el perfume esté sellado y sin usar.",
+      "Si tu perfume llega dañado o no es el que pediste, escríbenos dentro de las 48 horas siguientes con fotos del paquete y lo resolvemos sin costo para ti.",
+      "Por higiene, no aceptamos devoluciones de perfumes abiertos o usados.",
+    ],
+  },
+  {
+    id: "atencion",
+    title: "Atención",
+    summary: "Te respondemos por WhatsApp en horario de tienda.",
+    body: [
+      `Horario: ${site.hours}.`,
+      `WhatsApp: ${site.whatsappDisplay}.`,
+      "Fuera de horario puedes dejarnos tu mensaje y te respondemos al día siguiente.",
+    ],
+  },
 ];
 
 export const faqs = [

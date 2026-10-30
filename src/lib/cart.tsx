@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
-import { products, type Product } from "../data/products";
+import type { Product } from "../data/products";
+import { useCatalog } from "./catalog";
 import { lempiras } from "./format";
 
 export interface CartLine {
@@ -34,6 +35,7 @@ function loadCart(): Record<string, number> {
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<Record<string, number>>(loadCart);
   const [isOpen, setIsOpen] = useState(false);
+  const products = useCatalog();
 
   useEffect(() => {
     try {
@@ -64,7 +66,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         }),
       clear: () => setItems({}),
     };
-  }, [items, isOpen]);
+  }, [items, isOpen, products]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
