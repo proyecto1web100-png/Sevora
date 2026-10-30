@@ -22,7 +22,7 @@ npm run build    # genera la versión final en /dist
 | Artículos de la guía de perfumería | `src/data/guide.ts` |
 | Logo e íconos | `public/brand/` y `public/favicon.png` |
 
-> Los precios, notas, duración y proyección actuales son de ejemplo, y las políticas de `site.ts` son una propuesta. Revísenlos antes de promocionar la web.
+> Los precios, notas, duración y proyección actuales son de ejemplo. Revísenlos antes de promocionar la web.
 
 ### Catálogo en Google Sheets (sin programar)
 

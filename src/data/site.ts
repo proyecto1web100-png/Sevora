@@ -1,5 +1,4 @@
 // Datos generales de la tienda. Edita aquí el número, redes, horario y políticas.
-// Los textos marcados como "confirmar" son una propuesta: ajústalos a cómo trabajan ustedes.
 
 export const site = {
   name: "Sévora Perfumerie",
@@ -9,7 +8,7 @@ export const site = {
   whatsapp: "50497946129",
   whatsappDisplay: "+504 9794-6129",
   country: "Honduras",
-  // Horario de atención (confirmar).
+  // Horario de atención.
   hours: "Lunes a sábado, 9:00 a. m. – 7:00 p. m.",
   // Enlace CSV de la hoja de Google Sheets publicada en la web (ver README). Vacío = usa src/data/products.ts.
   catalogCsvUrl: "",
@@ -29,7 +28,7 @@ export const trustPoints = [
   { title: "Asesoría personal", text: "Te ayudamos a encontrar tu aroma por WhatsApp." },
 ];
 
-// Políticas de compra (confirmar). Cada una se abre completa al tocarla.
+// Políticas de compra. Cada una se abre completa al tocarla.
 export const policies = [
   {
     id: "originalidad",
@@ -54,11 +53,11 @@ export const policies = [
   {
     id: "cambios",
     title: "Cambios y devoluciones",
-    summary: "Cambios dentro de 7 días si el perfume está sellado.",
+    summary: "Todas las ventas son finales: no hay cambios ni devoluciones.",
     body: [
-      "Puedes solicitar un cambio dentro de los 7 días siguientes a recibir tu pedido, siempre que el perfume esté sellado y sin usar.",
-      "Si tu perfume llega dañado o no es el que pediste, escríbenos dentro de las 48 horas siguientes con fotos del paquete y lo resolvemos sin costo para ti.",
-      "Por higiene, no aceptamos devoluciones de perfumes abiertos o usados.",
+      "Todas nuestras ventas son finales. No realizamos cambios, devoluciones ni reembolsos, y no atendemos reclamos después de entregado el pedido.",
+      "Antes de confirmar tu compra te confirmamos por WhatsApp el perfume, la presentación y el precio. Revisa bien tu pedido antes de pagar.",
+      "Si tienes dudas sobre qué perfume elegir, escríbenos antes de comprar y te asesoramos.",
     ],
   },
   {
