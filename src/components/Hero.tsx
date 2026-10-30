@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { whatsappLink } from "../lib/format";
 import { easeOut } from "../lib/motion";
+import { HeroDunes } from "./HeroDunes";
 import { ArrowIcon, WhatsAppIcon } from "./ui";
 
 const lines = [
@@ -14,35 +15,13 @@ export function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [0, 120]);
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const ringScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
 
   let wordIndex = 0;
 
   return (
     <section id="inicio" className="hero" ref={ref}>
-      <motion.div className="hero__ring" style={{ scale: ringScale }} aria-hidden>
-        <svg viewBox="0 0 400 400">
-          <defs>
-            <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#F6E3C8" />
-              <stop offset="50%" stopColor="#C9A27E" />
-              <stop offset="100%" stopColor="#7A5C42" />
-            </linearGradient>
-          </defs>
-          <motion.circle
-            cx="200"
-            cy="200"
-            r="196"
-            fill="none"
-            stroke="url(#ring)"
-            strokeWidth="1"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2.4, ease: easeOut, delay: 0.3 }}
-          />
-        </svg>
-      </motion.div>
       <div className="hero__glow" aria-hidden />
+      <HeroDunes />
 
       <motion.div className="hero__content" style={{ y, opacity }}>
         <motion.p
@@ -104,15 +83,6 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      <motion.div
-        className="hero__hint"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.8 }}
-        aria-hidden
-      >
-        <span />
-      </motion.div>
     </section>
   );
 }
