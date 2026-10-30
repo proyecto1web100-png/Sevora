@@ -81,7 +81,7 @@ export function orderMessage(lines: CartLine[], total: number, name: string, cit
     .join("\n");
   const customer = [name && `Nombre: ${name}`, city && `Ciudad: ${city}`].filter(Boolean).join("\n");
   return [
-    "Hola Sévora Essence, quiero hacer este pedido:",
+    "Hola Sévora Perfumerie, quiero hacer este pedido:",
     items,
     `Total: ${lempiras(total)}`,
     customer,

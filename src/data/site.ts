@@ -1,7 +1,7 @@
 // Datos generales de la tienda. Edita aquí el número, textos de envío y pagos.
 
 export const site = {
-  name: "Sévora Essence",
+  name: "Sévora Perfumerie",
   // Número de WhatsApp en formato internacional, sin "+" ni espacios (504 = Honduras).
   whatsapp: "50497946129",
   whatsappDisplay: "+504 9794-6129",
