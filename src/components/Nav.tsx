@@ -24,7 +24,7 @@ export function Nav() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: easeOut, delay: 0.2 }}
     >
-      <a href="#inicio" className="nav__brand" aria-label="Sévora Essence, inicio">
+      <a href="#inicio" className="nav__brand" aria-label="Sévora Perfumerie, inicio">
         <img src="brand/sevora-logo.webp" alt="" width={36} height={36} />
         <span>SÉVORA</span>
       </a>

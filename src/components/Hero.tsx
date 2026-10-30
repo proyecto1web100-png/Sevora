@@ -30,7 +30,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4, ease: easeOut, delay: 0.2 }}
         >
-          Sévora Essence · Perfumería árabe
+          Sévora Perfumerie · Perfumes árabes originales
         </motion.p>
 
         <h1 className="hero__title">
@@ -74,7 +74,7 @@ export function Hero() {
           </a>
           <a
             className="btn btn--ghost"
-            href={whatsappLink("Hola Sévora Essence, me gustaría recibir asesoría para elegir un perfume.")}
+            href={whatsappLink("Hola Sévora Perfumerie, me gustaría recibir asesoría para elegir un perfume.")}
             target="_blank"
             rel="noreferrer"
           >

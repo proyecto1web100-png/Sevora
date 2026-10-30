@@ -69,7 +69,7 @@ export function Wholesale() {
         </ul>
         <a
           className="btn btn--gold"
-          href={whatsappLink("Hola Sévora Essence, me interesa comprar al por mayor. ¿Me comparten la lista de precios?")}
+          href={whatsappLink("Hola Sévora Perfumerie, me interesa comprar al por mayor. ¿Me comparten la lista de precios?")}
           target="_blank"
           rel="noreferrer"
         >
@@ -120,7 +120,7 @@ export function Footer() {
   return (
     <footer className="footer container">
       <div className="footer__brand">
-        <img src="brand/sevora-logo.webp" alt="Sévora Essence" width={72} height={72} />
+        <img src="brand/sevora-logo.webp" alt="Sévora Perfumerie" width={72} height={72} />
         <p className="muted">Perfumería árabe original en {site.country}.</p>
       </div>
       <div className="footer__cols">
@@ -132,7 +132,7 @@ export function Footer() {
         </div>
         <div>
           <p className="label">Contacto</p>
-          <a href={whatsappLink("Hola Sévora Essence")} target="_blank" rel="noreferrer">
+          <a href={whatsappLink("Hola Sévora Perfumerie")} target="_blank" rel="noreferrer">
             WhatsApp {site.whatsappDisplay}
           </a>
           <span className="muted">{site.country}</span>
@@ -152,7 +152,7 @@ export function WhatsAppFab() {
       {!isOpen && (
         <motion.a
           className="fab"
-          href={whatsappLink("Hola Sévora Essence, tengo una consulta.")}
+          href={whatsappLink("Hola Sévora Perfumerie, tengo una consulta.")}
           target="_blank"
           rel="noreferrer"
           aria-label="Escríbenos por WhatsApp"

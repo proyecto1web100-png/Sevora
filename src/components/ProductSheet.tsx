@@ -104,7 +104,7 @@ export function ProductSheet({ product, onClose }: { product: Product | null; on
                     target="_blank"
                     rel="noreferrer"
                     href={whatsappLink(
-                      `Hola Sévora Essence, me interesa el ${product.name} de ${product.brand} (${product.ml} ml). ¿Está disponible?`,
+                      `Hola Sévora Perfumerie, me interesa el ${product.name} de ${product.brand} (${product.ml} ml). ¿Está disponible?`,
                     )}
                   >
                     <WhatsAppIcon width={18} height={18} /> Preguntar

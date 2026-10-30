@@ -1,6 +1,6 @@
-# Sévora Essence
+# Sévora Perfumerie
 
-Web de marca de **Sévora Essence**, perfumería árabe en Honduras. Los pedidos se envían por WhatsApp.
+Web de marca de **Sévora Perfumerie**, perfumería árabe en Honduras. Los pedidos se envían por WhatsApp.
 
 Hecha con Vite, React, TypeScript y Framer Motion.
 
@@ -39,7 +39,7 @@ Es un sitio estático. Se puede hospedar gratis en **Vercel** o **Netlify** cone
 - Comando de build: `npm run build`
 - Carpeta de salida: `dist`
 
-Luego se conecta el dominio (por ejemplo `sevora.hn` o `sevoraessence.com`).
+Luego se conecta el dominio (por ejemplo `sevora.hn` o `sevoraperfumerie.com`).
 
 ### GitHub Pages
 
