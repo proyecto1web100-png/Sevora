@@ -17,7 +17,7 @@ npm run build    # genera la versión final en /dist
 | Qué cambiar | Dónde |
 |---|---|
 | Perfumes, precios, notas, stock | Hoja de Google Sheets (recomendado) o `src/data/products.ts` |
-| Fotos de productos | `public/products/` (cuadradas, fondo blanco, ~1000 px; sube también una copia `.jpg` para la vista previa en WhatsApp) |
+| Fotos de productos | `public/products/` (cuadradas, fondo blanco, ~1000 px; sube también una copia `.jpg` de 1200×630 con el perfume centrado, para la vista previa en WhatsApp) |
 | WhatsApp, horario, redes sociales, políticas, preguntas frecuentes | `src/data/site.ts` |
 | Artículos de la guía de perfumería | `src/data/guide.ts` |
 | Logo e íconos | `public/brand/` y `public/favicon.png` |
