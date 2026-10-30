@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import type { Product } from "../data/products";
+import { allNotes, type Product } from "../data/products";
 import { useCart } from "../lib/cart";
 import { lempiras } from "../lib/format";
 import { Reveal } from "./ui";
@@ -30,7 +30,7 @@ export function Spotlight({ product, onOpen }: { product: Product; onOpen: (p: P
         <Reveal delay={0.16}>
           <p className="lead">{product.description}</p>
           <ul className="chips" aria-label="Notas olfativas">
-            {product.notes.map((n) => (
+            {allNotes(product).slice(0, 6).map((n) => (
               <li key={n}>{n}</li>
             ))}
           </ul>

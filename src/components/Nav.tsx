@@ -6,7 +6,8 @@ import { BagIcon } from "./ui";
 
 const links = [
   { href: "#coleccion", label: "Colección" },
-  { href: "#nosotros", label: "Nosotros" },
+  { href: "#encuentra", label: "Encuentra tu perfume" },
+  { href: "#guia", label: "Guía" },
   { href: "#mayoristas", label: "Mayoristas" },
   { href: "#preguntas", label: "Preguntas" },
 ];

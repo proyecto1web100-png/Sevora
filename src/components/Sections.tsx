@@ -1,13 +1,14 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { brands } from "../data/products";
-import { faqs, site, trustPoints } from "../data/site";
+import { faqs, site, social, trustPoints } from "../data/site";
+import { useBrands } from "../lib/catalog";
 import { useCart } from "../lib/cart";
 import { whatsappLink } from "../lib/format";
 import { easeOut, exit } from "../lib/motion";
-import { ChevronIcon, Reveal, SectionHeader, WhatsAppIcon } from "./ui";
+import { ChevronIcon, FacebookIcon, InstagramIcon, Reveal, SectionHeader, TikTokIcon, WhatsAppIcon } from "./ui";
 
 export function BrandStrip() {
+  const brands = useBrands();
   return (
     <Reveal className="brandstrip container">
       <p className="eyebrow">Marcas que trabajamos</p>
@@ -120,28 +121,57 @@ export function Footer() {
   return (
     <footer className="footer container">
       <div className="footer__brand">
-        <img src="brand/sevora-logo.webp" alt="Sévora Perfumerie" width={72} height={72} />
+        <img src="brand/sevora-logo.webp" alt={site.name} width={72} height={72} />
         <p className="muted">Perfumería árabe original en {site.country}.</p>
       </div>
       <div className="footer__cols">
         <div>
           <p className="label">Tienda</p>
           <a href="#coleccion">Colección</a>
+          <a href="#encuentra">Encuentra tu perfume</a>
+          <a href="#guia">Guía de perfumería</a>
           <a href="#mayoristas">Mayoristas</a>
+        </div>
+        <div>
+          <p className="label">Ayuda</p>
+          <a href="#compras">Envíos y devoluciones</a>
+          <a href="#compras">Garantía de originalidad</a>
           <a href="#preguntas">Preguntas frecuentes</a>
         </div>
         <div>
           <p className="label">Contacto</p>
-          <a href={whatsappLink("Hola Sévora Perfumerie")} target="_blank" rel="noreferrer">
+          <a href={whatsappLink(`Hola ${site.name}`)} target="_blank" rel="noreferrer">
             WhatsApp {site.whatsappDisplay}
           </a>
+          <span className="muted">{site.hours}</span>
           <span className="muted">{site.country}</span>
+          <SocialLinks />
         </div>
       </div>
       <p className="footer__legal muted small">
         © {new Date().getFullYear()} {site.name}. Las marcas mencionadas pertenecen a sus respectivos dueños.
       </p>
     </footer>
+  );
+}
+
+const SOCIAL = [
+  { key: "instagram", label: "Instagram", Icon: InstagramIcon },
+  { key: "tiktok", label: "TikTok", Icon: TikTokIcon },
+  { key: "facebook", label: "Facebook", Icon: FacebookIcon },
+] as const;
+
+export function SocialLinks() {
+  const items = SOCIAL.filter((s) => social[s.key]);
+  if (!items.length) return null;
+  return (
+    <div className="social">
+      {items.map(({ key, label, Icon }) => (
+        <a key={key} href={social[key]} target="_blank" rel="noreferrer" aria-label={label} className="icon-btn">
+          <Icon width={18} height={18} />
+        </a>
+      ))}
+    </div>
   );
 }
 
@@ -152,7 +182,7 @@ export function WhatsAppFab() {
       {!isOpen && (
         <motion.a
           className="fab"
-          href={whatsappLink("Hola Sévora Perfumerie, tengo una consulta.")}
+          href={whatsappLink(`Hola ${site.name}, tengo una consulta.`)}
           target="_blank"
           rel="noreferrer"
           aria-label="Escríbenos por WhatsApp"
