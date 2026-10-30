@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { whatsappLink } from "../lib/format";
 import { easeOut } from "../lib/motion";
-import { HeroRipple } from "./HeroRipple";
+import { heroVariants, type HeroVariant } from "./hero-art/variants";
 import { ArrowIcon, WhatsAppIcon } from "./ui";
 
 const lines = [
@@ -10,7 +10,8 @@ const lines = [
   { words: ["se", "queda."], gold: true },
 ];
 
-export function Hero() {
+export function Hero({ variant = heroVariants[0] }: { variant?: HeroVariant }) {
+  const { Slot, Frame, Backdrop } = variant;
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [0, 120]);
@@ -19,11 +20,13 @@ export function Hero() {
   let wordIndex = 0;
 
   return (
-    <section id="inicio" className="hero" ref={ref}>
+    <section id="inicio" className={`hero ${variant.className ?? ""}`} ref={ref}>
       <div className="hero__glow" aria-hidden />
+      {Backdrop && <Backdrop />}
 
       <motion.div className="hero__content" style={{ y, opacity }}>
-        <HeroRipple />
+        {Frame && <Frame />}
+        {Slot && <Slot />}
         <motion.p
           className="eyebrow"
           initial={{ opacity: 0, y: 8 }}
