@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { whatsappLink } from "../lib/format";
 import { easeOut } from "../lib/motion";
+import { HeroRipple } from "./HeroRipple";
 import { ArrowIcon, WhatsAppIcon } from "./ui";
 
 const lines = [
@@ -20,28 +21,7 @@ export function Hero() {
 
   return (
     <section id="inicio" className="hero" ref={ref}>
-      <motion.div className="hero__ring" style={{ scale: ringScale }} aria-hidden>
-        <svg viewBox="0 0 400 400">
-          <defs>
-            <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#F6E3C8" />
-              <stop offset="50%" stopColor="#C9A27E" />
-              <stop offset="100%" stopColor="#7A5C42" />
-            </linearGradient>
-          </defs>
-          <motion.circle
-            cx="200"
-            cy="200"
-            r="196"
-            fill="none"
-            stroke="url(#ring)"
-            strokeWidth="1"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2.4, ease: easeOut, delay: 0.3 }}
-          />
-        </svg>
-      </motion.div>
+      <HeroRipple scale={ringScale} />
       <div className="hero__glow" aria-hidden />
 
       <motion.div className="hero__content" style={{ y, opacity }}>
