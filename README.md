@@ -43,10 +43,8 @@ Luego se conecta el dominio (por ejemplo `sevora.hn` o `sevoraessence.com`).
 
 ### GitHub Pages
 
-El workflow `.github/workflows/deploy.yml` publica la web en GitHub Pages en cada push a `main`
-(o a mano desde la pestaña **Actions → Publicar en GitHub Pages → Run workflow**).
+La web está publicada en **https://proyecto1web100-png.github.io/Sevora/**.
 
-Para activarlo una sola vez: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-La web queda en `https://proyecto1web100-png.github.io/Sevora/`.
-
-> GitHub Pages en repositorios privados requiere un plan de pago (GitHub Pro). Con el plan gratuito, el repositorio debe ser público.
+Cada push a `main` la actualiza sola: el workflow `.github/workflows/deploy.yml` construye el sitio y lo sube
+a la rama `gh-pages`, que es la que GitHub Pages publica. También se puede lanzar a mano desde
+**Actions → Publicar en GitHub Pages → Run workflow**. No hay que editar la rama `gh-pages` a mano.
