@@ -936,6 +936,33 @@ button {
   gap: 48px 64px;
 }
 
+.footer__pay {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.footer__pay .label {
+  margin: 0;
+}
+
+.footer__bank {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.policy__marks {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+  color: var(--gold);
+}
+
 .social {
   display: flex;
   gap: 8px;
@@ -1145,12 +1172,120 @@ button {
   margin: 0;
 }
 
+.drawer__scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
 .drawer__lines {
   list-style: none;
   margin: 0;
   padding: 8px 24px;
-  flex: 1;
-  overflow: auto;
+}
+
+.drawer__details {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  padding: 20px 24px 24px;
+}
+
+/* Forma de pago */
+.pay {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.pay .label {
+  padding: 0;
+}
+
+.pay__options {
+  display: grid;
+  gap: 8px;
+}
+
+.pay__option {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.pay__option:hover {
+  border-color: rgba(226, 194, 159, 0.4);
+}
+
+.pay__option.is-selected {
+  border-color: var(--gold);
+  background: rgba(226, 194, 159, 0.08);
+}
+
+.pay__option:has(input:focus-visible) {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.pay__option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pay__icon {
+  display: grid;
+  place-items: center;
+  height: 32px;
+  color: var(--gold);
+}
+
+.pay__text {
+  display: grid;
+}
+
+.pay__title {
+  font-weight: 600;
+}
+
+.pay__detail {
+  margin: 12px 0 0;
+  padding: 12px 14px 12px 30px;
+  border-radius: var(--radius-md);
+  background: rgba(226, 194, 159, 0.06);
+  color: var(--text-2);
+  font-size: 13px;
+  line-height: 1.5;
+  display: grid;
+  gap: 6px;
+}
+
+.pay--error .pay__options .pay__option {
+  border-color: rgba(255, 140, 120, 0.6);
+}
+
+.pay__error {
+  margin: 8px 0 0;
+  color: #ff9b87;
+}
+
+.btn.is-muted {
+  opacity: 0.55;
+}
+
+.visa-badge {
+  display: block;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
 }
 
 .line {
@@ -1545,7 +1680,7 @@ button {
 
 .policies {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
 }
 

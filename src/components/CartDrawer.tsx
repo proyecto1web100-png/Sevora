@@ -1,15 +1,20 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { orderMessage, useCart } from "../lib/cart";
 import { lempiras, whatsappLink } from "../lib/format";
 import { easeOut, exit, sheet } from "../lib/motion";
 import { useLockScroll } from "./ProductSheet";
-import { CloseIcon, MinusIcon, PlusIcon, WhatsAppIcon } from "./ui";
+import { payments, type PaymentId } from "../data/site";
+import { BankIcon, CloseIcon, MinusIcon, PlusIcon, VisaBadge, WhatsAppIcon } from "./ui";
 
 export function CartDrawer() {
   const { lines, total, isOpen, close, setQty } = useCart();
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
+  const [payment, setPayment] = useState<PaymentId | null>(null);
+  const [needsPayment, setNeedsPayment] = useState(false);
+  const payRef = useRef<HTMLFieldSetElement>(null);
+  const method = payments.find((p) => p.id === payment);
   useLockScroll(isOpen, close);
 
   return (
@@ -48,6 +53,7 @@ export function CartDrawer() {
               </div>
             ) : (
               <>
+                <div className="drawer__scroll">
                 <ul className="drawer__lines">
                   <AnimatePresence initial={false}>
                     {lines.map(({ product, qty }) => (
@@ -81,7 +87,7 @@ export function CartDrawer() {
                   </AnimatePresence>
                 </ul>
 
-                <div className="drawer__foot">
+                <div className="drawer__details">
                   <div className="field-row">
                     <label className="field">
                       <span>Nombre</span>
@@ -92,19 +98,72 @@ export function CartDrawer() {
                       <input value={city} onChange={(e) => setCity(e.target.value)} placeholder="Opcional" />
                     </label>
                   </div>
+
+                  <fieldset ref={payRef} className={`pay ${needsPayment && !payment ? "pay--error" : ""}`}>
+                    <legend className="label">Forma de pago</legend>
+                    <div className="pay__options">
+                      {payments.map((p) => (
+                        <label key={p.id} className={`pay__option ${payment === p.id ? "is-selected" : ""}`}>
+                          <input
+                            type="radio"
+                            name="payment"
+                            value={p.id}
+                            checked={payment === p.id}
+                            onChange={() => setPayment(p.id)}
+                          />
+                          <span className="pay__icon" aria-hidden>
+                            {p.id === "tarjeta" ? <VisaBadge height={20} /> : <BankIcon width={22} height={22} />}
+                          </span>
+                          <span className="pay__text">
+                            <span className="pay__title">{p.title}</span>
+                            <span className="muted small">{p.short}</span>
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                    <AnimatePresence mode="wait" initial={false}>
+                      {method && (
+                        <motion.ul
+                          key={method.id}
+                          className="pay__detail"
+                          initial={{ opacity: 0, y: 6 }}
+                          animate={{ opacity: 1, y: 0, transition: { duration: 0.25, ease: easeOut } }}
+                          exit={{ opacity: 0, transition: { duration: 0.12 } }}
+                        >
+                          {method.detail.map((d) => (
+                            <li key={d}>{d}</li>
+                          ))}
+                        </motion.ul>
+                      )}
+                    </AnimatePresence>
+                    {needsPayment && !payment && <p className="pay__error small">Elige cómo quieres pagar.</p>}
+                  </fieldset>
+                </div>
+                </div>
+
+                <div className="drawer__foot">
                   <div className="drawer__total">
                     <span>Total</span>
                     <span className="price price--lg">{lempiras(total)}</span>
                   </div>
                   <p className="muted small">El costo de envío se confirma por WhatsApp según tu ciudad.</p>
-                  <a
-                    className="btn btn--gold btn--block"
-                    href={whatsappLink(orderMessage(lines, total, name.trim(), city.trim()))}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <WhatsAppIcon width={18} height={18} /> Enviar pedido por WhatsApp
-                  </a>
+                  {method ? (
+                    <a
+                      className="btn btn--gold btn--block"
+                      href={whatsappLink(orderMessage(lines, total, name.trim(), city.trim(), method.title))}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <WhatsAppIcon width={18} height={18} /> Enviar pedido por WhatsApp
+                    </a>
+                  ) : (
+                    <button className="btn btn--gold btn--block is-muted" onClick={() => {
+                        setNeedsPayment(true);
+                        payRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+                      }}>
+                      <WhatsAppIcon width={18} height={18} /> Enviar pedido por WhatsApp
+                    </button>
+                  )}
                 </div>
               </>
             )}

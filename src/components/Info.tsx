@@ -5,7 +5,7 @@ import { policies, site } from "../data/site";
 import { whatsappLink } from "../lib/format";
 import { exit, sheet } from "../lib/motion";
 import { useLockScroll } from "./ProductSheet";
-import { ArrowIcon, CloseIcon, Reveal, SectionHeader, WhatsAppIcon } from "./ui";
+import { ArrowIcon, BankIcon, CloseIcon, Reveal, SectionHeader, VisaBadge, WhatsAppIcon } from "./ui";
 
 interface Reading {
   eyebrow: string;
@@ -85,6 +85,12 @@ export function Trust() {
         {policies.map((p, i) => (
           <Reveal key={p.id} delay={0.05 * i}>
             <button className="policy" onClick={() => open({ eyebrow: "Políticas", title: p.title, body: p.body })}>
+              {p.id === "pagos" && (
+                <span className="policy__marks" aria-hidden>
+                  <VisaBadge height={22} />
+                  <BankIcon width={22} height={22} />
+                </span>
+              )}
               <h3>{p.title}</h3>
               <p>{p.summary}</p>
               <span className="policy__more">
