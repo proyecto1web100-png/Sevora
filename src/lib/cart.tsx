@@ -77,7 +77,7 @@ export function useCart() {
   return ctx;
 }
 
-export function orderMessage(lines: CartLine[], total: number, name: string, city: string) {
+export function orderMessage(lines: CartLine[], total: number, name: string, city: string, payment: string) {
   const items = lines
     .map((l) => `• ${l.qty} × ${l.product.name} – ${l.product.brand} (${l.product.ml} ml) — ${lempiras(l.qty * l.product.price)}`)
     .join("\n");
@@ -86,8 +86,9 @@ export function orderMessage(lines: CartLine[], total: number, name: string, cit
     "Hola Sévora Perfumerie, quiero hacer este pedido:",
     items,
     `Total: ${lempiras(total)}`,
+    `Forma de pago: ${payment}`,
     customer,
-    "¿Me confirman disponibilidad, envío y forma de pago?",
+    "¿Me confirman disponibilidad y costo de envío?",
   ]
     .filter(Boolean)
     .join("\n\n");

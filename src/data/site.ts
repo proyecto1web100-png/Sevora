@@ -14,6 +14,31 @@ export const site = {
   catalogCsvUrl: "",
 };
 
+// Formas de pago. El pedido pide elegir una y la incluye en el mensaje de WhatsApp.
+export type PaymentId = "tarjeta" | "transferencia";
+
+export const payments: { id: PaymentId; title: string; short: string; detail: string[] }[] = [
+  {
+    id: "tarjeta",
+    title: "Tarjeta Visa",
+    short: "Enlace de pago seguro",
+    detail: [
+      "Te enviamos por WhatsApp un enlace de pago seguro de Visa por el total de tu pedido.",
+      "El enlace llega a nombre de Next Digital HN, nuestro procesador de pagos, y vence en poco tiempo: págalo apenas lo recibas.",
+      "Aceptamos tarjetas Visa de débito o crédito emitidas en Honduras.",
+    ],
+  },
+  {
+    id: "transferencia",
+    title: "Transferencia bancaria",
+    short: "Depósito o transferencia",
+    detail: [
+      "Te enviamos por WhatsApp los datos de nuestra cuenta.",
+      "Envíanos la foto del comprobante y despachamos tu pedido en cuanto confirmemos el pago.",
+    ],
+  },
+];
+
 // Redes sociales: pega el enlace completo. Las que queden vacías no se muestran.
 export const social = {
   instagram: "",
@@ -24,7 +49,7 @@ export const social = {
 export const trustPoints = [
   { title: "100% originales", text: "Cada frasco viene sellado y con su caja original." },
   { title: "Envíos a toda Honduras", text: "Entregas en Tegucigalpa, San Pedro Sula y todo el país." },
-  { title: "Pagas como prefieras", text: "Tarjeta, transferencia o contra entrega." },
+  { title: "Pago seguro", text: "Con tarjeta Visa mediante enlace de pago o por transferencia bancaria." },
   { title: "Asesoría personal", text: "Te ayudamos a encontrar tu aroma por WhatsApp." },
 ];
 
@@ -41,12 +66,21 @@ export const policies = [
     ],
   },
   {
+    id: "pagos",
+    title: "Formas de pago",
+    summary: "Tarjeta Visa con enlace de pago seguro o transferencia bancaria.",
+    body: [
+      ...payments.map((p) => `${p.title}: ${p.detail.join(" ")}`),
+      "No manejamos pago contra entrega. Despachamos tu pedido una vez confirmado el pago.",
+    ],
+  },
+  {
     id: "envios",
     title: "Envíos",
     summary: "A toda Honduras. Te confirmamos costo y tiempo antes de pagar.",
     body: [
       "Enviamos a todo el país por medio de empresas de paquetería. En Tegucigalpa y San Pedro Sula también podemos coordinar entrega con motorista.",
-      "El costo depende de tu ciudad y te lo confirmamos por WhatsApp antes de que pagues.",
+      "El costo depende de tu ciudad y te lo confirmamos por WhatsApp antes de que pagues; se incluye en el total de tu pedido.",
       "El tiempo de entrega suele ser de 1 a 3 días hábiles después de confirmado el pago. Te compartimos el número de guía para que sigas tu paquete.",
     ],
   },
@@ -83,7 +117,7 @@ export const faqs = [
   },
   {
     q: "¿Qué formas de pago aceptan?",
-    a: "Tarjeta de crédito o débito mediante enlace de pago seguro, transferencia bancaria y efectivo contra entrega en las zonas donde esté disponible.",
+    a: "Aceptamos tarjetas Visa de crédito o débito emitidas en Honduras, mediante un enlace de pago seguro que te enviamos por WhatsApp, y transferencia bancaria. No manejamos pago contra entrega.",
   },
   {
     q: "¿Hacen envíos a todo el país?",

@@ -5,7 +5,17 @@ import { useBrands } from "../lib/catalog";
 import { useCart } from "../lib/cart";
 import { whatsappLink } from "../lib/format";
 import { easeOut, exit } from "../lib/motion";
-import { ChevronIcon, FacebookIcon, InstagramIcon, Reveal, SectionHeader, TikTokIcon, WhatsAppIcon } from "./ui";
+import {
+  BankIcon,
+  ChevronIcon,
+  FacebookIcon,
+  InstagramIcon,
+  Reveal,
+  SectionHeader,
+  TikTokIcon,
+  VisaBadge,
+  WhatsAppIcon,
+} from "./ui";
 
 export function BrandStrip() {
   const brands = useBrands();
@@ -123,6 +133,13 @@ export function Footer() {
       <div className="footer__brand">
         <img src="brand/sevora-logo.webp" alt={site.name} width={72} height={72} />
         <p className="muted">Perfumería árabe original en {site.country}.</p>
+        <div className="footer__pay">
+          <span className="label">Aceptamos</span>
+          <VisaBadge height={22} />
+          <span className="footer__bank">
+            <BankIcon width={18} height={18} /> Transferencia
+          </span>
+        </div>
       </div>
       <div className="footer__cols">
         <div>
@@ -134,6 +151,7 @@ export function Footer() {
         </div>
         <div>
           <p className="label">Ayuda</p>
+          <a href="#compras">Formas de pago</a>
           <a href="#compras">Envíos y devoluciones</a>
           <a href="#compras">Garantía de originalidad</a>
           <a href="#preguntas">Preguntas frecuentes</a>
