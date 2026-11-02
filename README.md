@@ -26,7 +26,7 @@ npm run build    # genera la versión final en /dist
 
 ### Catálogo en Google Sheets (sin programar)
 
-1. En Google Sheets: **Archivo → Importar → Subir** el archivo `plantilla-catalogo.csv` de este repositorio. También se descarga actualizado desde la web publicada, en `…/Sevora/catalogo.csv`.
+1. En Google Sheets: **Archivo → Importar → Subir** el archivo `plantilla-catalogo.csv` de este repositorio. También se descarga actualizado desde la web publicada, en `https://sevorahn.com/catalogo.csv`.
 2. Editen la hoja: una fila por perfume. Las listas dentro de una celda (notas, momento, ocasiones, perfil) van separadas por `;`.
    - `genero`: Hombre, Mujer o Unisex · `momento`: Día; Noche · `clima`: Calor; Fresco
    - `perfil`: Dulce, Fresco, Amaderado, Especiado, Frutal, Cítrico, Floral
@@ -39,7 +39,7 @@ Desde ese momento la web lee la hoja cada vez que alguien la abre: los cambios d
 
 ### Páginas de cada perfume
 
-Cada perfume tiene su propio enlace, por ejemplo `…/Sevora/perfume/hawas-ice/`, con título, descripción e imagen para la vista previa en WhatsApp y Google. El botón **Compartir** de la ficha copia ese enlace. El build también genera `sitemap.xml` y `robots.txt`.
+Cada perfume tiene su propio enlace, por ejemplo `https://sevorahn.com/perfume/hawas-ice/`, con título, descripción e imagen para la vista previa en WhatsApp y Google. El botón **Compartir** de la ficha copia ese enlace. El build también genera `sitemap.xml` y `robots.txt`.
 
 ## Cómo funciona un pedido
 
@@ -54,17 +54,27 @@ Las formas de pago y sus textos se editan en `payments` dentro de `src/data/site
 
 ## Publicarla
 
-Es un sitio estático. Se puede hospedar gratis en **Vercel** o **Netlify** conectando este repositorio:
+La web oficial es **https://sevorahn.com**, hospedada en **Netlify** (proyecto `sevorahn`). La configuración está en `netlify.toml`: comando `npm run build` y carpeta `dist`.
 
-- Comando de build: `npm run build`
-- Carpeta de salida: `dist`
+### Netlify conectado a GitHub (despliegue automático)
 
-Luego se conecta el dominio (por ejemplo `sevora.hn` o `sevoraperfumerie.com`).
+1. En Netlify: **Projects → sevorahn → Project configuration → Build & deploy → Continuous deployment → Link repository**.
+2. Elegir **GitHub** → `proyecto1web100-png/Sevora` → rama `main`. Netlify toma el comando y la carpeta de `netlify.toml`.
+3. Desde ahí, cada cambio en `main` se publica solo.
+4. Si usan la hoja de Google Sheets: **Project configuration → Environment variables** → agregar `VITE_CATALOG_CSV_URL` con el enlace CSV.
 
-### GitHub Pages
+### Dominio sevorahn.com
 
-La web está publicada en **https://proyecto1web100-png.github.io/Sevora/**.
+1. En Netlify: **Domain management → Add a domain** → `sevorahn.com` → marcarlo como dominio principal. Agregar también `www.sevorahn.com`.
+2. En el proveedor donde compraron el dominio, una de estas dos opciones:
+   - **Opción A, recomendada:** cambiar los *nameservers* por los 4 que muestra Netlify (Netlify DNS). Netlify configura todo solo.
+   - **Opción B:** dejar los nameservers y crear estos registros DNS:
+     - `A` · nombre `@` · valor `75.2.60.5`
+     - `CNAME` · nombre `www` · valor `sevorahn.netlify.app`
+3. Esperar la propagación, normalmente de minutos a pocas horas. Netlify activa el HTTPS (Let's Encrypt) solo.
 
-Cada push a `main` la actualiza sola: el workflow `.github/workflows/deploy.yml` construye el sitio y lo sube
-a la rama `gh-pages`, que es la que GitHub Pages publica. También se puede lanzar a mano desde
-**Actions → Publicar en GitHub Pages → Run workflow**. No hay que editar la rama `gh-pages` a mano.
+La dirección del sitio se configura en `url` dentro de `src/data/site.ts`. La usan los enlaces de cada perfume, la vista previa en WhatsApp y el sitemap.
+
+### GitHub Pages (copia)
+
+El workflow `.github/workflows/deploy.yml` sigue publicando una copia en `https://proyecto1web100-png.github.io/Sevora/` en cada push a `main`. Cuando sevorahn.com esté funcionando se puede desactivar.
