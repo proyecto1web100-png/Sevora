@@ -3,7 +3,7 @@
 export const site = {
   name: "Sévora Perfumerie",
   // Dirección pública de la web (con "/" al final). Se usa para los enlaces de cada perfume.
-  url: "https://proyecto1web100-png.github.io/Sevora/",
+  url: "https://sevorahn.com/",
   // Número de WhatsApp en formato internacional, sin "+" ni espacios (504 = Honduras).
   whatsapp: "50497946129",
   whatsappDisplay: "+504 9794-6129",
