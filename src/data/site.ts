@@ -24,7 +24,7 @@ export const payments: { id: PaymentId; title: string; short: string; detail: st
     short: "Enlace de pago seguro",
     detail: [
       "Te enviamos por WhatsApp un enlace de pago seguro de Visa por el total de tu pedido.",
-      "El enlace llega a nombre de Next Digital HN, nuestro procesador de pagos, y vence en poco tiempo: págalo apenas lo recibas.",
+      "El enlace llega a nombre de Sévora Perfumerie y vence en poco tiempo: págalo apenas lo recibas.",
       "Aceptamos tarjetas Visa de débito o crédito emitidas en Honduras.",
     ],
   },
@@ -37,6 +37,18 @@ export const payments: { id: PaymentId; title: string; short: string; detail: st
       "Envíanos la foto del comprobante y despachamos tu pedido en cuanto confirmemos el pago.",
     ],
   },
+];
+
+// Secciones de la página, en orden. Las usa el menú lateral.
+export const sections = [
+  { id: "inicio", label: "Inicio" },
+  { id: "coleccion", label: "Colección" },
+  { id: "encuentra", label: "Encuentra tu perfume" },
+  { id: "nosotros", label: "Por qué Sévora" },
+  { id: "guia", label: "Guía de perfumería" },
+  { id: "compras", label: "Pagos, envíos y políticas" },
+  { id: "mayoristas", label: "Mayoristas" },
+  { id: "preguntas", label: "Preguntas frecuentes" },
 ];
 
 // Redes sociales: pega el enlace completo. Las que queden vacías no se muestran.

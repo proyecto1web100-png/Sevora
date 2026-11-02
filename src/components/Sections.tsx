@@ -193,23 +193,42 @@ export function SocialLinks() {
   );
 }
 
-export function WhatsAppFab() {
+// Pastilla flotante con WhatsApp y, si están configuradas, las redes sociales.
+export function SocialPill() {
   const { isOpen } = useCart();
+  const networks = SOCIAL.filter((n) => social[n.key]);
   return (
     <AnimatePresence>
       {!isOpen && (
-        <motion.a
-          className="fab"
-          href={whatsappLink(`Hola ${site.name}, tengo una consulta.`)}
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Escríbenos por WhatsApp"
-          initial={{ opacity: 0, scale: 0.9, y: 12 }}
-          animate={{ opacity: 1, scale: 1, y: 0, transition: { duration: 0.5, ease: easeOut, delay: 1.6 } }}
-          exit={{ opacity: 0, scale: 0.9, transition: exit }}
+        <motion.div
+          className="pill"
+          initial={{ opacity: 0, y: 16, x: "-50%" }}
+          animate={{ opacity: 1, y: 0, x: "-50%", transition: { duration: 0.5, ease: easeOut, delay: 1.6 } }}
+          exit={{ opacity: 0, y: 16, x: "-50%", transition: exit }}
         >
-          <WhatsAppIcon width={26} height={26} />
-        </motion.a>
+          <a
+            className="pill__item pill__item--wa"
+            href={whatsappLink(`Hola ${site.name}, tengo una consulta.`)}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Escríbenos por WhatsApp"
+          >
+            <WhatsAppIcon width={22} height={22} />
+            <span className="pill__label">WhatsApp</span>
+          </a>
+          {networks.map(({ key, label, Icon }) => (
+            <a
+              key={key}
+              className="pill__item"
+              href={social[key]}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Síguenos en ${label}`}
+            >
+              <Icon width={22} height={22} />
+            </a>
+          ))}
+        </motion.div>
       )}
     </AnimatePresence>
   );
