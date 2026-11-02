@@ -2,7 +2,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-
 import { useState } from "react";
 import { useCart } from "../lib/cart";
 import { easeOut, snappy } from "../lib/motion";
-import { BagIcon } from "./ui";
+import { BagIcon, MenuIcon } from "./ui";
 
 const links = [
   { href: "#coleccion", label: "Colección" },
@@ -12,7 +12,7 @@ const links = [
   { href: "#preguntas", label: "Preguntas" },
 ];
 
-export function Nav() {
+export function Nav({ onMenu }: { onMenu: () => void }) {
   const { count, open } = useCart();
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
@@ -25,10 +25,16 @@ export function Nav() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: easeOut, delay: 0.2 }}
     >
+      <div className="nav__start">
+      <button className="nav__menu" onClick={onMenu} aria-label="Abrir menú de secciones">
+        <MenuIcon />
+        <span className="nav__menu-label">Menú</span>
+      </button>
       <a href="#inicio" className="nav__brand" aria-label="Sévora Perfumerie, inicio">
         <img src="brand/sevora-logo.webp" alt="" width={36} height={36} />
         <span>SÉVORA</span>
       </a>
+      </div>
       <nav className="nav__links" aria-label="Principal">
         {links.map((l) => (
           <a key={l.href} href={l.href}>

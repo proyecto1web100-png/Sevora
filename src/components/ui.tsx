@@ -90,6 +90,12 @@ export const ArrowIcon = (p: IconProps) => (
   </svg>
 );
 
+export const MenuIcon = (p: IconProps) => (
+  <svg {...base} {...p}>
+    <path d="M4 7h16M4 12h16M4 17h10" />
+  </svg>
+);
+
 export const ChevronIcon = (p: IconProps) => (
   <svg {...base} {...p}>
     <path d="m6 9 6 6 6-6" />

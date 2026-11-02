@@ -5,7 +5,8 @@ import { Collection } from "./components/Collection";
 import { Hero } from "./components/Hero";
 import { Nav } from "./components/Nav";
 import { ProductSheet } from "./components/ProductSheet";
-import { BrandStrip, Faq, Footer, Why, Wholesale, WhatsAppFab } from "./components/Sections";
+import { BrandStrip, Faq, Footer, SocialPill, Why, Wholesale } from "./components/Sections";
+import { SideMenu } from "./components/SideMenu";
 import { Spotlight } from "./components/Spotlight";
 import { Guide, Trust } from "./components/Info";
 import { Quiz } from "./components/Quiz";
@@ -34,6 +35,8 @@ function Store() {
   const products = useCatalog();
   const [selected, setSelected] = useState<Product | null>(null);
   const closeSheet = useCallback(() => setSelected(null), []);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
   const featured = products.find((p) => p.badge === "Más vendido") ?? products[0];
 
   useEffect(() => {
@@ -44,7 +47,7 @@ function Store() {
 
   return (
     <>
-      <Nav />
+      <Nav onMenu={() => setMenuOpen(true)} />
       <main>
         <Hero />
         <BrandStrip />
@@ -58,7 +61,8 @@ function Store() {
         <Faq />
       </main>
       <Footer />
-      <WhatsAppFab />
+      <SocialPill />
+      <SideMenu open={menuOpen} onClose={closeMenu} />
       <ProductSheet product={selected} onClose={closeSheet} onSelect={setSelected} />
       <CartDrawer />
     </>

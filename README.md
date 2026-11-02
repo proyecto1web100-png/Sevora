@@ -44,9 +44,9 @@ Cada perfume tiene su propio enlace, por ejemplo `…/Sevora/perfume/hawas-ice/`
 ## Cómo funciona un pedido
 
 1. El cliente agrega perfumes al pedido (se guarda en su navegador).
-2. Elige la forma de pago y toca **Enviar pedido por WhatsApp** y se abre un chat al +504 9794-6129 con el detalle y el total.
+2. Elige la forma de pago, toca **Enviar pedido por WhatsApp** y se abre un chat al +504 9794-6129 con el detalle y el total.
 3. El cliente elige la forma de pago (va en el mensaje):
-   - **Tarjeta Visa:** generen en la App Ficohsa (TapiYa → Link) un enlace por el total con envío y envíenlo. Llega a nombre de Next Digital HN y vence pronto, así que genérenlo cuando el cliente ya confirmó.
+   - **Tarjeta Visa:** generen en la App Ficohsa (TapiYa → Link) un enlace por el total con envío y envíenlo. Vence pronto, así que genérenlo cuando el cliente ya confirmó.
    - **Transferencia:** envíen los datos de la cuenta y esperen el comprobante.
 4. Despachen el pedido cuando el pago esté confirmado. No hay pago contra entrega.
 

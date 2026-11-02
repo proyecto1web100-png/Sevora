@@ -284,6 +284,36 @@ button {
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
+.nav__start {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav__menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 14px 0 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    background-color 0.2s,
+    transform 0.1s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.nav__menu:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav__menu:active {
+  transform: scale(0.97);
+}
+
 .nav__brand {
   display: flex;
   align-items: center;
@@ -998,28 +1028,162 @@ button {
   margin: 0;
 }
 
-/* ---------- WhatsApp flotante ---------- */
+/* ---------- Pastilla flotante de contacto y redes ---------- */
 
-.fab {
+.pill {
   position: fixed;
-  right: 20px;
-  bottom: calc(20px + env(safe-area-inset-bottom));
+  left: 50%;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
   z-index: 30;
-  display: grid;
-  place-items: center;
-  width: 56px;
-  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px;
   border-radius: 999px;
-  background: var(--gold-gradient);
-  color: #1a140e;
+  background: rgba(18, 18, 20, 0.72);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--border-strong);
   box-shadow:
-    0 12px 32px -8px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  transition: transform 0.1s cubic-bezier(0.2, 0, 0, 1);
+    0 16px 40px -8px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-.fab:active {
+.pill__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  min-width: 44px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    transform 0.1s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.pill__item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--gold);
+}
+
+.pill__item:active {
   transform: scale(0.94);
+}
+
+.pill__item--wa {
+  padding: 0 16px 0 14px;
+  background: var(--gold-gradient);
+  color: #1a140e;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.pill__item--wa:hover {
+  background: var(--gold-gradient);
+  color: #1a140e;
+}
+
+/* ---------- Menú lateral ---------- */
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: min(380px, 88vw);
+  padding: calc(16px + env(safe-area-inset-top, 0px)) 24px calc(24px + env(safe-area-inset-bottom, 0px));
+  overflow-y: auto;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  box-shadow: 40px 0 80px rgba(0, 0, 0, 0.4);
+}
+
+.menu__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.menu__head img {
+  border-radius: 999px;
+  mix-blend-mode: lighten;
+}
+
+.menu__label {
+  margin-bottom: 8px;
+}
+
+.menu__list {
+  list-style: none;
+  margin: 0 0 32px;
+  padding: 0;
+}
+
+.menu__list a {
+  position: relative;
+  display: block;
+  padding: 10px 0 10px 20px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text-2);
+  transition: color 0.2s;
+}
+
+.menu__list a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  translate: 0 -50%;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.menu__list a:hover {
+  color: var(--text);
+}
+
+.menu__list a.is-active {
+  color: var(--gold);
+}
+
+.menu__list a.is-active::before {
+  opacity: 1;
+}
+
+.menu__foot {
+  display: grid;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.menu__foot .small {
+  margin: 0;
+}
+
+.menu__pay {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu__pay .label {
+  margin: 0;
 }
 
 /* ---------- Overlays: ficha y pedido ---------- */
@@ -1892,8 +2056,19 @@ button {
     inset: 8px 8px auto;
   }
 
-  .nav__cart-label {
+  .nav__cart-label,
+  .nav__menu-label {
     display: none;
+  }
+
+  .nav__menu {
+    width: 44px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .nav__start {
+    gap: 8px;
   }
 
   .hero .eyebrow {
